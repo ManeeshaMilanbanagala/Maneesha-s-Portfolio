@@ -1,12 +1,23 @@
+// Typing Animation
 var typed = new Typed(".text", {
-    strings: ["Front-end developer", "Back-end developer", "Software Engineer"],
-    typeSpeed: 100,
-    backSpeed:100,
+    strings: ["Frontend Developer", "Backend Developer", "Software Engineer"],
+    typeSpeed: 70,
+    backSpeed: 70,
     backDelay: 1000,
     loop: true
-})
+});
 
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
+// Active Navigation Link
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
@@ -25,3 +36,26 @@ window.onscroll = () => {
         }
     });
 };
+
+// Add mobile menu toggle functionality
+const menuBtn = document.createElement('div');
+menuBtn.classList.add('menu-btn');
+menuBtn.innerHTML = '<i class="bx bx-menu"></i>';
+document.querySelector('.header').appendChild(menuBtn);
+
+const navbar = document.querySelector('.navbar');
+menuBtn.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+        navbar.classList.remove('active');
+    });
+});
+
+// Close menu when scrolling
+window.addEventListener('scroll', () => {
+    navbar.classList.remove('active');
+});
